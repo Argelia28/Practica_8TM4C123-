@@ -1,4 +1,4 @@
-#include "lib/TM4C123GH6PM.h"
+#include "lib/include.h"
 #include <stdint.h>
 #include <string.h>
 #include <stdio.h>
@@ -368,7 +368,7 @@ void OLED_PutChar(char ch )
    const uint8_t *base = &OledFont[ch - 32][0];
 
     uint8_t bytes[9];
-    //bytes[0] = 0x40;
+    bytes[0] = 0x40;
     memmove( bytes + 1, base, 8 );
        
 		I2C3_Write_Multiple(0x3C,0x40,9,bytes);
@@ -423,7 +423,7 @@ void OLED_Write_String( char *s )
 void OLED_Write_Integer(uint8_t  i)
 {
      char s[20];
-     sprintf( s, "%d", i );
+     //*sprintf( s, "%d", i );
      OLED_Write_String( s );
      OLED_Write_String( "     " );
 }
@@ -441,7 +441,7 @@ void OLED_Write_Float(float f)
 {
     char* buf11;
     int status;
-    sprintf( buf11, "%f", f );
+    //*sprintf( buf11, "%f", f );
     OLED_Write_String(buf11);
     OLED_Write_String( "     " );
 }
